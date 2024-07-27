@@ -28,10 +28,7 @@ const App = () => {
       {loading ? 
         ( <h1 className="loading">loading...</h1> )
         :
-        (<div className="preview">
-          { html }
-        </div>
-      )}
+        (<div className="preview" dangerouslySetInnerHTML={{__html: html}}></div>)}
   </div>
   )
 }
