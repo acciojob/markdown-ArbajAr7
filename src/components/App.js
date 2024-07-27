@@ -1,38 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+
+import './../styles/App.css';
 
 const App = () => {
-  const [markdown,setMarkdown]=useState('');
-  const [html, setHtml] = useState('');
-  const [loading, setLoading] = useState(false);
-  
+  const [markdown, setMarkdown] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handletext = (e) =>{
-    setLoading(true);
-    setMarkdown(e.target.value)
-  }
+  useEffect(() => {
+    // Simulate loading process
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, [markdown]);
 
-  useEffect(()=>{
-    // setLoading(true);
-    const timer = setTimeout(()=>{
-      setHtml(markdown);
-      setLoading(false);
-    },500);
-    return ()=> clearTimeout(timer);
-  },[markdown]);
+  const handleMarkdownChange = (event) => {
+    setMarkdown(event.target.value);
+  };
 
   return (
-  <div className="app">
-      <textarea className="textarea" onChange={handletext}> 
-      </textarea>
-      
-      {loading ? 
-        ( <h1 className="loading">loading...</h1> )
-        :
-        (<div className="preview">
-          <h1>{ html }</h1>
-        </div>
-      )}
-  </div>
-  )
-}
+    <div className="app">
+      <div className="textarea">
+        <textarea
+          value={markdown}
+          onChange={handleMarkdownChange}
+          placeholder="Write your markdown here..."
+        />
+      </div>
+      <div className="preview">
+        {isLoading ? (
+          <p className="loading">Loading...</p>
+        ) : (
+          <h1 dangerouslySetInnerHTML={{ __html: markdown }} />
+        )}
+      </div>
+    </div>
+  );
+};
+
 export default App;
