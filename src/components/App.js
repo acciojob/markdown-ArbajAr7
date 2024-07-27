@@ -26,7 +26,7 @@ const App = () => {
       </textarea>
       
       {loading ? 
-        ( <p className="loading">loading...</p> )
+        ( <h1 className="loading">loading...</h1> )
         :
         (<h1 className="preview">
           { html }
