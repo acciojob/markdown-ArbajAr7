@@ -28,9 +28,9 @@ const App = () => {
       {loading ? 
         ( <p className="loading">loading...</p> )
         :
-        (<div className="preview">
+        (<h1 className="preview">
           { html }
-        </div>
+        </h1>
       )}
   </div>
   )
