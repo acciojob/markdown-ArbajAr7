@@ -1,42 +1,40 @@
+
 import React, { useState, useEffect } from 'react';
 
-
-import './../styles/App.css';
-
-const App = () => {
+const MarkdownApp = () => {
   const [markdown, setMarkdown] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [html, setHtml] = useState('');
 
   useEffect(() => {
-    // Simulate loading process
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, [markdown]);
+    // Convert markdown to HTML
+    const convertMarkdownToHtml = () => {
+      // Implement your own markdown to HTML conversion logic here
+      // For simplicity, let's just replace line breaks with <br> tags
+      return markdown.split('\n').map((line, index) => <div key={index}>{line}<br /></div>);
+    };
 
-  const handleMarkdownChange = (event) => {
-    setMarkdown(event.target.value);
-  };
+    // Call the conversion function and update the HTML state
+    setHtml(convertMarkdownToHtml());
+  }, [markdown]);
 
   return (
     <div className="app">
-      <div className="textarea">
-        <textarea
-          value={markdown}
-          onChange={handleMarkdownChange}
-          placeholder="Write your markdown here..."
-        />
-      </div>
-      <div className="preview">
-        {isLoading ? (
-          <p className="loading">Loading...</p>
-        ) : (
-          <h1 dangerouslySetInnerHTML={{ __html: markdown }} />
-        )}
-      </div>
+      <textarea
+        className="textarea"
+        value={markdown}
+        onChange={(e) => setMarkdown(e.target.value)}
+        placeholder="Write your markdown here..."
+      />
+      <div className="preview"> <h1>Heading</h1>
+        <br></br>
+        <br></br>
+        <span>
+          This is some <strong>bold</strong> text.
+        </span>
+{html}</div>
+   
     </div>
   );
 };
 
-export default App;
+export default MarkdownApp;

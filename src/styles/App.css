@@ -1,25 +1,12 @@
-.app {
-    display: flex;
-    justify-content: space-around;
+h1 {
+    color: #27aedb;
+    text-align: center;
+    }
+    
+
+button{
+    color: #27aedb;
+    text-align: center;
+    justify-content: center;
     align-items: center;
-    height: 100vh;
-  }
-  
-  .textarea {
-    flex: 1;
-    margin-right: 20px;
-  }
-  
-  .preview {
-    flex: 1;
-    border: 1px solid #ccc;
-    padding: 10px;
-    overflow-y: auto;
-  }
-  
-  .loading {
-    font-weight: bold;
-  }
-  
-    
-    
+}
